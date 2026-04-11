@@ -1,11 +1,3 @@
-
-
-
 export const Cart = () => {
-
-    return(
-        <>
-        
-        </>
-    )
-}
+	return <></>;
+};
