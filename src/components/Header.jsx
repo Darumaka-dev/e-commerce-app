@@ -18,7 +18,7 @@ export const Header = () => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="sticky">
-				<Toolbar>
+			 	<Toolbar>
 					<Typography
 						variant="h6"
 						component="div"

@@ -14,52 +14,39 @@ import {
 import GradeIcon from '@mui/icons-material/Grade';
 
 export const ProductCard = (props) => {
-	console.log(props.product.title);
+	const {
+		product: { title, image, price },
+	} = props;
+
 	return (
-		<Stack
-			// spacing={2}
-			direction="row"
-			useFlexGap
-			sx={{ flexWrap: 'wrap' }}
-		>
-			<Card sx={{ width: 350 }}>
-				<CardContent>
-					<Stack>
-						<img
-							sx={{ mx: 0, my: 'auto' }}
-							src={props.product.image}
-							alt={props.product.title}
-						/>
-						<Stack
-							sx={{
-								alignItems: 'center',
-								justifyContent: 'space-between',
-								px: 2,
-								mb: 2,
-								flex: 1,
-							}}
-							direction="row"
-						>
-							<CardHeader title={props.product.title} sx={{ p: 0 }} />
-							<Typography variant="body2" sx={{ color: 'text.secondary' }}>
-								{props.product.price}
-							</Typography>
-						</Stack>
-						<Stack
-							sx={{
-								alignItems: 'center',
-								justifyContent: 'space-between',
-								px: 2,
-								mb: 2,
-							}}
-							direction="row"
-						>
-							<GradeIcon></GradeIcon>
-							<CardActions>Купить</CardActions>
-						</Stack>
+		<Card sx={{ width: 350 }}>
+			<CardMedia
+				component="img"
+				src={image}
+				alt={title}
+				sx={{ objectFit: 'contain', height: 200 }}
+			/>
+
+			<CardContent>
+				<Stack>
+					<Stack
+						sx={{
+							justifyContent: 'space-between',
+						}}
+						direction="row"
+					>
+						<Typography variant="body2">{title}</Typography>
+						<Typography variant="body2" sx={{ color: 'text.secondary' }}>
+							{price}
+						</Typography>
 					</Stack>
-				</CardContent>
-			</Card>
-		</Stack>
+				</Stack>
+			</CardContent>
+
+			<CardActions disableSpacing>
+				<GradeIcon sx={{ marginRight: 'auto' }}/>
+				<Button>Купить</Button>
+			</CardActions>
+		</Card>
 	);
 };

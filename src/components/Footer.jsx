@@ -25,7 +25,7 @@ export const Footer = () => {
 					<Box sx={{}}> QPICK</Box>
 					<Box sx={{}}>
 						<Typography>Избранное</Typography>
-						{/* <Link to='/Cart'>Корзина</Link> */}
+						<Link to='/Cart'>Корзина</Link>
 						<Typography>Корзина</Typography>
 					</Box>
 					<Box sx={{}}>
