@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Catalog } from './page/Catalog';
 import { Cart } from './page/Cart';
@@ -7,27 +7,27 @@ import { Cart } from './page/Cart';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
-import appleByz from './assets/apple-byz.png';
 
-// import './App.css'
 
 function App() {
-	const [cart, setCart] = useState([]);
-	console.log(cart);
+	const [cartItems, setCartItems] = useState(() => {
+		const data = localStorage.getItem('cart');
+		return data ? JSON.parse(data) : [];
+	  });
 
 	useEffect(() => {
-		localStorage.setItem('cart', JSON.stringify(cart));
-	  },[cart]);
+		localStorage.setItem('cart', JSON.stringify(cartItems));
+	  },[cartItems]);
 
 	return (
 		<>
 			<BrowserRouter>
-				<Header cart={cart} />
+				<Header cartCount={cartItems.length} />
 				<Routes>
-					<Route path="/" element={<Catalog cart={cart} setCart={setCart} />} />
+					<Route path="/" element={<Catalog cartItems={cartItems} setCartItems={setCartItems} />} />
 					<Route
 						path="/Cart"
-						element={<Cart cart={cart} setCart={setCart} />}
+						element={<Cart cartItems={cartItems} setCartItems={setCartItems} />}
 					/>
 				</Routes>
 				<Footer />

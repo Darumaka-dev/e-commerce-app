@@ -16,7 +16,7 @@ import {
 
 export const Header = (props) => {
 
-	const {cart} = props;
+	const {cartCount} = props;
 
 	const navigate = useNavigate();
 	const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
@@ -28,7 +28,6 @@ export const Header = (props) => {
 	const handleClickCart = () => {
 		navigate('/Cart');
 	};
-
 
 
 	return (
@@ -62,7 +61,7 @@ export const Header = (props) => {
 					</IconButton>
 					<IconButton onClick={handleClickCart}>
 						<Badge
-							badgeContent={cart.length}
+							badgeContent={cartCount}
 							sx={{
 								'& .MuiBadge-badge': {
 									backgroundColor: '#ffa542',

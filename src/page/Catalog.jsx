@@ -4,7 +4,7 @@ import { Stack, Container, Typography } from '@mui/material';
 
 export const Catalog = (props) => {
 
-	const {cart, setCart} = props;
+	const {cartItems, setCartItems} = props;
 	return (
 		<>
 			<Container maxWidth="lg">
@@ -24,14 +24,13 @@ export const Catalog = (props) => {
 					{products
 						.filter((product) => product.type == 'headPhones')
 						.map((product) => (
-							<ProductCard key={product.id} product={product} cart={cart} setCart={setCart}/>
+							<ProductCard key={product.id} product={product} cartItems={cartItems} setCartItems={setCartItems}/>
 						))}
 				</Stack>
 				<Typography variant="h6" sx={{ mb: 2.5, color: '#838383' }}>
 					Беспроводные наушники
 				</Typography>
 				<Stack
-					spacing={3}
 					direction="row"
 					useFlexGap
 					sx={{
@@ -44,7 +43,7 @@ export const Catalog = (props) => {
 					{products
 						.filter((product) => product.type == 'earphones')
 						.map((product) => (
-							<ProductCard key={product.id} product={product} cart={cart} setCart={setCart}/>
+							<ProductCard key={product.id} product={product} cartItems={cartItems} setCartItems={setCartItems}/>
 						))}
 				</Stack>
 			</Container>

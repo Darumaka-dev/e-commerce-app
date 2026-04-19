@@ -1,5 +1,4 @@
 import {
-	Container,
 	Button,
 	Box,
 	Stack,
@@ -8,6 +7,8 @@ import {
 	CardMedia,
 	CardContent,
 	CardActions,
+	CardHeader,
+	IconButton,
 } from '@mui/material';
 
 import GradeIcon from '@mui/icons-material/Grade';
@@ -17,18 +18,23 @@ export const ProductCard = (props) => {
 	const {
 		product: { title, image, price, rating, sale },
 		product,
-		cart,
-		setCart
+		setCartItems,
 	} = props;
 
 	const addProduct = () => {
-		console.log(product)
-		setCart((prev) => [...prev, product])
+		setCartItems((prev) => [...prev, product]);
 	};
 
 	return (
 		<Card sx={{ width: 350, borderRadius: 3.75 }}>
-			<FavoriteIcon sx={{ m: 2, color: '#838383' }}></FavoriteIcon>
+			<CardHeader
+				action={
+					<IconButton>
+						<FavoriteIcon sx={{ color: '#838383' }} />
+					</IconButton>
+				}
+				sx={{ flexDirection: 'row-reverse' }}
+			></CardHeader>
 			<CardMedia
 				component="img"
 				src={image}
@@ -42,54 +48,54 @@ export const ProductCard = (props) => {
 			/>
 
 			<CardContent>
-				<Stack>
-					<Stack
-						sx={{
-							justifyContent: 'space-between',
-						}}
-						direction="row"
-					>
-						<Typography variant="subtitle1">{title}</Typography>
-						<Typography sx={{ whiteSpace: 'pre-line', color: '#ffa542' }}>
-							{sale ? sale : price} ₽{'\n'}
-							{sale && (
-								<span
-									style={{
-										textDecoration: 'line-through',
-										fontSize: '13px',
-										color: '#FFCE7F',
-									}}
-								>
-									{price} ₽
-								</span>
-							)}
+				<Stack
+					direction="row"
+					sx={{
+						justifyContent: 'space-between',
+						height: '45px',
+					}}
+				>
+					<Typography variant="subtitle1">{title}</Typography>
+					<Box>
+						<Typography sx={{ color: '#ffa542' }}>
+							{sale ? sale : price} ₽
 						</Typography>
-					</Stack>
+						<Typography
+							variant="caption"
+							sx={{ textDecoration: 'line-through', color: '#FFCE7F' }}
+						>
+							{sale && `${price} ₽`}
+						</Typography>
+					</Box>
 				</Stack>
 			</CardContent>
 
-			<CardActions
-				sx={{
-					marginBottom: 4,
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'space-between',
-				}}
-			>
-				<Box
+			<CardActions>
+				<Stack
+					direction="row"
 					sx={{
-						display: 'flex',
-						textAlign: 'center',
 						alignItems: 'center',
-						gap: 1.25,
+						justifyContent: 'space-between',
+						mb: 3.5,
+						width: '100%',
 					}}
 				>
-					<GradeIcon sx={{ marginRight: 'auto', color: '#ffa542' }} />
-					<Box sx={{ color: '#838383', fontSize: 17, fontWeight: 500 }}>
-						{rating}
-					</Box>
-				</Box>
-				<Button onClick={addProduct} color="black">Купить</Button>
+					<Stack
+						direction="row"
+						spacing={1.25}
+						sx={{
+							alignItems: 'center',
+						}}
+					>
+						<GradeIcon sx={{ color: '#ffa542' }} />
+						<Typography variant="subtitle2" sx={{ color: '#838383' }}>
+							{rating}
+						</Typography>
+					</Stack>
+					<Button onClick={addProduct} color="black">
+						Купить
+					</Button>
+				</Stack>
 			</CardActions>
 		</Card>
 	);

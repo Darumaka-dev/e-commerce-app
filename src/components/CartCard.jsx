@@ -1,57 +1,57 @@
 import {
-	Container,
-	Button,
 	Box,
+	CardHeader,
 	Stack,
 	Typography,
 	Card,
 	CardMedia,
-	CardContent,
 	CardActions,
 	IconButton,
 } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { useState } from 'react';
 
 export const CartCard = (props) => {
 	const {
 		product: { id, title, image, price, rating, sale },
 		product,
-		cart,
-		setCart,
+		cartItems,
+		setCartItems,
 	} = props;
 
 	const deleteProduct = () => {
-		setCart(cart.filter((product) => product.id !== id));
+		setCartItems(cartItems.filter((product) => product.id !== id));
 	};
 
 	const addProduct = () => {
-		setCart((prev) => [...prev, product]);
+		setCartItems((prev) => [...prev, product]);
 	};
 
 	const removeProduct = () => {
-		const productIndexToBeRemoved = cart.findLastIndex(
+		const productIndexToBeRemoved = cartItems.findLastIndex(
 			(itemProduct) => itemProduct.id == id,
 		);
-		setCart(cart.toSpliced(productIndexToBeRemoved, 1));
+		setCartItems(cartItems.toSpliced(productIndexToBeRemoved, 1));
 	};
 
-	const sumProduct = (sale? sale : price) * product.count;
-
-	console.log(sumProduct)
+	const sumProduct = (sale ? sale : price) * product.count;
 
 	return (
 		<Card sx={{ maxWidth: 633, p: '10px 20px', borderRadius: 3.75 }}>
-			<IconButton
-				color="error"
-				sx={{ display: 'block', ml: 'auto' }}
-				onClick={deleteProduct}
-			>
-				<DeleteForeverIcon />
-			</IconButton>
-			<Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+			<CardHeader
+				action={
+					<IconButton
+						color="error"
+						onClick={deleteProduct}
+					>
+						<DeleteForeverIcon />
+					</IconButton>
+				}
+				sx={{ flexDirection: 'row', p: 0}}
+			></CardHeader>
+
+			<Stack direction='row' spacing={3} sx={{alignItems: 'center'}}>
 				<CardMedia
 					component="img"
 					src={image}
@@ -69,9 +69,10 @@ export const CartCard = (props) => {
 						{sale ? sale : price} ₽
 					</Typography>
 				</Box>
-			</Box>
-			<CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-				<Box sx={{ display: 'flex', gap: '25px', pl: 2 }}>
+			</Stack>
+			
+			<CardActions sx={{ display: 'flex', justifyContent:'space-between' }}>
+				<Stack direction='row' spacing={3}>
 					<RemoveCircleIcon
 						sx={{
 							color: '#FFCE7F',
@@ -93,7 +94,7 @@ export const CartCard = (props) => {
 						}}
 						onClick={addProduct}
 					></AddCircleIcon>
-				</Box>
+				</Stack>
 				<Typography>{sumProduct} ₽</Typography>
 			</CardActions>
 		</Card>
