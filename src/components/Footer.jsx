@@ -2,10 +2,14 @@ import { Container, Box, Stack, Typography, Card, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 
+import { useAppStyles } from '../data/ThemeStyles';
+
 import LanguageIcon from '@mui/icons-material/Language';
 
 export const Footer = () => {
 	const navigate = useNavigate();
+	const { colors, fonts } = useAppStyles();
+
 	const handleClick = () => {
 		navigate('/');
 	};
@@ -24,7 +28,7 @@ export const Footer = () => {
 					<Box
 						variant="h6"
 						component="div"
-						sx={{ fontWeight: 600, minWidth: 150 }}
+						sx={{ fontWeight: fonts.medium, minWidth: 150 }}
 						onClick={handleClick}
 					>
 						QPICK
@@ -86,7 +90,7 @@ export const Footer = () => {
 							sx={{ justifyContent: 'space-between' }}
 						>
 							<LanguageIcon></LanguageIcon>
-							<Typography sx={{ color: '#ffa542' }}>Рус</Typography>
+							<Typography sx={{ color: colors.accentMain }}>Рус</Typography>
 							<Typography>Eng</Typography>
 						</Stack>
 					</Box>

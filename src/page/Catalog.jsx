@@ -1,14 +1,15 @@
 import { products } from '../data/products.js';
 import { ProductCard } from '../components/ProductCard.jsx';
 import { Stack, Container, Typography } from '@mui/material';
+import { useAppStyles } from '../data/ThemeStyles';
 
 export const Catalog = (props) => {
-
-	const {cartItems, setCartItems} = props;
+	const { cartItems, setCartItems } = props;
+	const { colors } = useAppStyles();
 	return (
 		<>
 			<Container maxWidth="lg">
-				<Typography variant="h6" sx={{ mb: 2.5, color: '#838383' }}>
+				<Typography variant="h6" sx={{ mb: 2.5, color: colors.textPrimary }}>
 					Наушники
 				</Typography>
 				<Stack
@@ -24,10 +25,15 @@ export const Catalog = (props) => {
 					{products
 						.filter((product) => product.type == 'headPhones')
 						.map((product) => (
-							<ProductCard key={product.id} product={product} cartItems={cartItems} setCartItems={setCartItems}/>
+							<ProductCard
+								key={product.id}
+								product={product}
+								cartItems={cartItems}
+								setCartItems={setCartItems}
+							/>
 						))}
 				</Stack>
-				<Typography variant="h6" sx={{ mb: 2.5, color: '#838383' }}>
+				<Typography variant="h6" sx={{ mb: 2.5, color: colors.textPrimary}}>
 					Беспроводные наушники
 				</Typography>
 				<Stack
@@ -43,7 +49,12 @@ export const Catalog = (props) => {
 					{products
 						.filter((product) => product.type == 'earphones')
 						.map((product) => (
-							<ProductCard key={product.id} product={product} cartItems={cartItems} setCartItems={setCartItems}/>
+							<ProductCard
+								key={product.id}
+								product={product}
+								cartItems={cartItems}
+								setCartItems={setCartItems}
+							/>
 						))}
 				</Stack>
 			</Container>

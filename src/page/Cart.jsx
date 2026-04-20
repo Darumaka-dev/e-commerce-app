@@ -1,4 +1,5 @@
 import { CartCard } from '../components/CartCard.jsx';
+import { useAppStyles } from '../data/ThemeStyles';
 
 import {
 	Container,
@@ -12,6 +13,7 @@ import {
 
 export const Cart = (props) => {
 	const { cartItems, setCartItems } = props;
+	const { colors } = useAppStyles();
 
 	const countCartItems = () => {
 		return cartItems.reduce((acc, currentValue) => {
@@ -34,7 +36,7 @@ export const Cart = (props) => {
 
 	return (
 		<Container maxWidth="lg" sx={{ minHeight: '100vh', mb: 10 }}>
-			<Typography variant="h6" sx={{ mb: 2.5, color: '#838383' }}>
+			<Typography variant="h6" sx={{ mb: 2.5, color: colors.textPrimary }}>
 				Корзина
 			</Typography>
 
@@ -77,7 +79,7 @@ export const Cart = (props) => {
 						<Button
 							variant="contained" fullWidth
 							sx={{
-								bgcolor: 'black',
+								bgcolor: colors.dark,
 								borderRadius: 2.5,
 								p: '12px 18px',
 							}}

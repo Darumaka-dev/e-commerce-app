@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
+import { useAppStyles } from '../data/ThemeStyles';
 
 import {
 	AppBar,
@@ -13,13 +13,13 @@ import {
 	useScrollTrigger,
 } from '@mui/material';
 
-
 export const Header = (props) => {
-
-	const {cartCount} = props;
+	const { cartCount } = props;
 
 	const navigate = useNavigate();
 	const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
+
+	const { colors, fonts } = useAppStyles();
 
 	const handleClickHome = () => {
 		navigate('/');
@@ -29,19 +29,18 @@ export const Header = (props) => {
 		navigate('/Cart');
 	};
 
-
 	return (
 		<Box sx={{ flexGrow: 1, mb: 4 }}>
 			<AppBar
 				position="sticky"
 				elevation={trigger ? 0 : 4}
-				sx={{ bgcolor: '#eaeaea', color: 'black' }}
+				sx={{ bgcolor: colors.bg, color: 'black' }}
 			>
 				<Toolbar>
 					<Typography
 						variant="h6"
 						component="div"
-						sx={{ flexGrow: 1, fontWeight: 600 }}
+						sx={{ flexGrow: 1, fontWeight: fonts.medium }}
 						onClick={handleClickHome}
 					>
 						QPICK
@@ -51,7 +50,7 @@ export const Header = (props) => {
 							badgeContent={0}
 							sx={{
 								'& .MuiBadge-badge': {
-									backgroundColor: '#ffa542',
+									backgroundColor: colors.accentMain,
 									color: 'white',
 								},
 							}}
@@ -64,7 +63,7 @@ export const Header = (props) => {
 							badgeContent={cartCount}
 							sx={{
 								'& .MuiBadge-badge': {
-									backgroundColor: '#ffa542',
+									backgroundColor: colors.accentMain,
 									color: 'white',
 								},
 							}}

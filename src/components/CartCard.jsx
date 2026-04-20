@@ -12,6 +12,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
+import { useAppStyles } from '../data/ThemeStyles';
+
 export const CartCard = (props) => {
 	const {
 		product: { id, title, image, price, rating, sale },
@@ -19,6 +21,8 @@ export const CartCard = (props) => {
 		cartItems,
 		setCartItems,
 	} = props;
+
+	const { colors } = useAppStyles();
 
 	const deleteProduct = () => {
 		setCartItems(cartItems.filter((product) => product.id !== id));
@@ -65,7 +69,7 @@ export const CartCard = (props) => {
 				></CardMedia>
 				<Box variant="subtitle1">
 					<Typography variant="subtitle1">{title}</Typography>
-					<Typography variant="subtitle1" sx={{ color: '#AAAAAA' }}>
+					<Typography variant="subtitle1" sx={{ color: colors.light }}>
 						{sale ? sale : price} ₽
 					</Typography>
 				</Box>
@@ -75,7 +79,7 @@ export const CartCard = (props) => {
 				<Stack direction='row' spacing={3}>
 					<RemoveCircleIcon
 						sx={{
-							color: '#FFCE7F',
+							color: colors.accentSecondary,
 							bgcolor: 'white',
 							borderRadius: '30px',
 							width: 30,
@@ -86,7 +90,7 @@ export const CartCard = (props) => {
 					<Typography>{product.count}</Typography>
 					<AddCircleIcon
 						sx={{
-							color: '#FFCE7F',
+							color: colors.accentSecondary,
 							bgcolor: 'white',
 							borderRadius: '30px',
 							width: 30,

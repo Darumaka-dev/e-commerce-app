@@ -10,6 +10,7 @@ import {
 	CardHeader,
 	IconButton,
 } from '@mui/material';
+import { useAppStyles } from '../data/ThemeStyles';
 
 import GradeIcon from '@mui/icons-material/Grade';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -21,6 +22,8 @@ export const ProductCard = (props) => {
 		setCartItems,
 	} = props;
 
+	const { colors } = useAppStyles();
+
 	const addProduct = () => {
 		setCartItems((prev) => [...prev, product]);
 	};
@@ -30,7 +33,7 @@ export const ProductCard = (props) => {
 			<CardHeader
 				action={
 					<IconButton>
-						<FavoriteIcon sx={{ color: '#838383' }} />
+						<FavoriteIcon sx={{ color: colors.textPrimary }} />
 					</IconButton>
 				}
 				sx={{ flexDirection: 'row-reverse' }}
@@ -57,12 +60,12 @@ export const ProductCard = (props) => {
 				>
 					<Typography variant="subtitle1">{title}</Typography>
 					<Box>
-						<Typography sx={{ color: '#ffa542' }}>
+						<Typography sx={{ color: colors.accentMain }}>
 							{sale ? sale : price} ₽
 						</Typography>
 						<Typography
 							variant="caption"
-							sx={{ textDecoration: 'line-through', color: '#FFCE7F' }}
+							sx={{ textDecoration: 'line-through', color: colors.accentSecondary }}
 						>
 							{sale && `${price} ₽`}
 						</Typography>
@@ -87,8 +90,8 @@ export const ProductCard = (props) => {
 							alignItems: 'center',
 						}}
 					>
-						<GradeIcon sx={{ color: '#ffa542' }} />
-						<Typography variant="subtitle2" sx={{ color: '#838383' }}>
+						<GradeIcon sx={{ color: colors.accentMain }} />
+						<Typography variant="subtitle2" sx={{ color: colors.textPrimary }}>
 							{rating}
 						</Typography>
 					</Stack>
