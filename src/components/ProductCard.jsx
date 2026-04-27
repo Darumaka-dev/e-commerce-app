@@ -17,15 +17,27 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const ProductCard = (props) => {
 	const {
-		product: { title, image, price, rating, sale },
+		product: { title, image, price, rating, sale, id },
 		product,
 		setCartItems,
+		cartItems,
 	} = props;
 
 	const { colors } = useAppStyles();
 
 	const addProduct = () => {
-		setCartItems((prev) => [...prev, product]);
+		const isProductExists = cartItems.some((product) => product.id == id);
+
+		if (!isProductExists) {
+			setCartItems((prev) => [...prev, product]);
+			return;
+		}
+
+		const updatedCart = cartItems.map((product) =>
+			product.id == id ? { ...product, count: product.count + 1 } : product,
+		);
+
+		setCartItems(updatedCart);
 	};
 
 	return (
@@ -61,11 +73,14 @@ export const ProductCard = (props) => {
 					<Typography variant="subtitle1">{title}</Typography>
 					<Box>
 						<Typography sx={{ color: colors.accentMain }}>
-							{sale ? sale : price} ₽
+							{sale || price} ₽
 						</Typography>
 						<Typography
 							variant="caption"
-							sx={{ textDecoration: 'line-through', color: colors.accentSecondary }}
+							sx={{
+								textDecoration: 'line-through',
+								color: colors.accentSecondary,
+							}}
 						>
 							{sale && `${price} ₽`}
 						</Typography>

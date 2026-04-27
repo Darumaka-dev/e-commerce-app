@@ -8,18 +8,18 @@ export const Catalog = (props) => {
 	const { colors } = useAppStyles();
 	return (
 		<>
-			<Container maxWidth="lg">
-				<Typography variant="h6" sx={{ mb: 2.5, color: colors.textPrimary }}>
+			<Container maxWidth="lg" sx={{ p: '32px 0' }}>
+				<Typography variant="h6" sx={{ color: colors.textPrimary }}>
 					Наушники
 				</Typography>
 				<Stack
 					direction="row"
 					useFlexGap
+					spacing={4}
 					sx={{
 						flexWrap: 'wrap',
 						justifyContent: 'center',
-						gap: '30px 45px',
-						mb: 3.75,
+						p: '32px 0',
 					}}
 				>
 					{products
@@ -33,17 +33,17 @@ export const Catalog = (props) => {
 							/>
 						))}
 				</Stack>
-				<Typography variant="h6" sx={{ mb: 2.5, color: colors.textPrimary}}>
+				<Typography variant="h6" sx={{ color: colors.textPrimary }}>
 					Беспроводные наушники
 				</Typography>
 				<Stack
 					direction="row"
 					useFlexGap
+					spacing={4}
 					sx={{
 						flexWrap: 'wrap',
 						justifyContent: 'center',
-						gap: '30px 45px',
-						mb: 3.75,
+						p: '32px 0',
 					}}
 				>
 					{products

@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 
 export const Header = (props) => {
-	const { cartCount } = props;
+	const { cartItems } = props;
 
 	const navigate = useNavigate();
 	const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
@@ -28,6 +28,8 @@ export const Header = (props) => {
 	const handleClickCart = () => {
 		navigate('/Cart');
 	};
+
+	const cartCount = cartItems.reduce((acc, current) => acc + current.count, 0);
 
 	return (
 		<Box sx={{ flexGrow: 1, mb: 4 }}>

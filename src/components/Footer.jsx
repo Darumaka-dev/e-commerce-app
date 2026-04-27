@@ -18,7 +18,9 @@ export const Footer = () => {
 		<Container maxWidth="lg">
 			<Card>
 				<Stack
-					direction="row" spacing={8} useFlexGap
+					direction="row"
+					spacing={4}
+					useFlexGap
 					sx={{
 						justifyContent: 'space-between',
 						p: '30px',

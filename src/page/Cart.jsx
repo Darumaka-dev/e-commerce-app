@@ -15,45 +15,34 @@ export const Cart = (props) => {
 	const { cartItems, setCartItems } = props;
 	const { colors } = useAppStyles();
 
-	const countCartItems = () => {
-		return cartItems.reduce((acc, currentValue) => {
-			const existingProduct = acc.find((item) => item.id == currentValue.id);
-
-			existingProduct
-				? existingProduct.count++
-				: acc.push({ ...currentValue, count: 1 });
-			return acc;
-		}, []);
-	};
-
 	const totalPrice = cartItems.reduce(
 		(acc, currentValue) =>
-			acc + (currentValue.sale ? currentValue.sale : currentValue.price),
+			acc + (currentValue.sale || currentValue.price) * currentValue.count,
 		0,
 	);
 
-	const cardProducts = countCartItems();
-
 	return (
-		<Container maxWidth="lg" sx={{ minHeight: '100vh', mb: 10 }}>
-			<Typography variant="h6" sx={{ mb: 2.5, color: colors.textPrimary }}>
+		<Container maxWidth="lg" sx={{ minHeight: '100vh', p: '32px 0' }}>
+			<Typography variant="h6" sx={{ color: colors.textPrimary }}>
 				Корзина
 			</Typography>
 
 			<Stack
 				direction="row"
+				useFlexGap
+				spacing={3}
 				sx={{
 					justifyContent: 'space-between',
 					flexWrap: 'wrap',
-					gap: 3,
+					p: '30px 0',
 				}}
 			>
 				<Stack
 					direction="column"
-					spacing={'30px'}
-					sx={{  minWidth: 330, flexGrow: 2 }}
+					spacing={4}
+					sx={{ minWidth: 330, flexGrow: 2 }}
 				>
-					{cardProducts.map((product) => (
+					{cartItems.map((product) => (
 						<CartCard
 							key={product.id}
 							product={product}
@@ -77,7 +66,8 @@ export const Cart = (props) => {
 					</CardContent>
 					<CardActions sx={{ p: 0 }}>
 						<Button
-							variant="contained" fullWidth
+							variant="contained"
+							fullWidth
 							sx={{
 								bgcolor: colors.dark,
 								borderRadius: 2.5,

@@ -23,39 +23,47 @@ export const CartCard = (props) => {
 	} = props;
 
 	const { colors } = useAppStyles();
+	const cartItem = cartItems.find((item) => item.id === id);
+	const count = cartItem.count;
 
 	const deleteProduct = () => {
 		setCartItems(cartItems.filter((product) => product.id !== id));
 	};
 
 	const addProduct = () => {
-		setCartItems((prev) => [...prev, product]);
+		setCartItems(
+			cartItems.map((product) =>
+				product.id == id ? { ...product, count: product.count + 1 } : product,
+			),
+		);
 	};
 
 	const removeProduct = () => {
-		const productIndexToBeRemoved = cartItems.findLastIndex(
-			(itemProduct) => itemProduct.id == id,
+		if (count == 1) {
+			setCartItems(cartItems.filter((product) => product.id !== id));
+			return;
+		}
+		setCartItems(
+			cartItems.map((product) =>
+				product.id == id ? { ...product, count: product.count - 1 } : product,
+			),
 		);
-		setCartItems(cartItems.toSpliced(productIndexToBeRemoved, 1));
 	};
 
-	const sumProduct = (sale ? sale : price) * product.count;
+	const sumProduct = (sale || price) * count;
 
 	return (
 		<Card sx={{ maxWidth: 633, p: '10px 20px', borderRadius: 3.75 }}>
 			<CardHeader
 				action={
-					<IconButton
-						color="error"
-						onClick={deleteProduct}
-					>
+					<IconButton color="error" onClick={deleteProduct}>
 						<DeleteForeverIcon />
 					</IconButton>
 				}
-				sx={{ flexDirection: 'row', p: 0}}
+				sx={{ flexDirection: 'row', p: 0 }}
 			></CardHeader>
 
-			<Stack direction='row' spacing={3} sx={{alignItems: 'center'}}>
+			<Stack direction="row" spacing={3} sx={{ alignItems: 'center' }}>
 				<CardMedia
 					component="img"
 					src={image}
@@ -70,13 +78,13 @@ export const CartCard = (props) => {
 				<Box variant="subtitle1">
 					<Typography variant="subtitle1">{title}</Typography>
 					<Typography variant="subtitle1" sx={{ color: colors.light }}>
-						{sale ? sale : price} ₽
+						{sale || price} ₽
 					</Typography>
 				</Box>
 			</Stack>
-			
-			<CardActions sx={{ display: 'flex', justifyContent:'space-between' }}>
-				<Stack direction='row' spacing={3}>
+
+			<CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+				<Stack direction="row" spacing={3}>
 					<RemoveCircleIcon
 						sx={{
 							color: colors.accentSecondary,
@@ -87,7 +95,7 @@ export const CartCard = (props) => {
 						}}
 						onClick={removeProduct}
 					></RemoveCircleIcon>
-					<Typography>{product.count}</Typography>
+					<Typography>{count}</Typography>
 					<AddCircleIcon
 						sx={{
 							color: colors.accentSecondary,
