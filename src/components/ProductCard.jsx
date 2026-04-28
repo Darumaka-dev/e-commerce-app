@@ -17,28 +17,12 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const ProductCard = (props) => {
 	const {
-		product: { title, image, price, rating, sale, id },
+		product: { title, image, price, rating, sale },
 		product,
-		setCartItems,
-		cartItems,
+		onAddToCard,
 	} = props;
 
 	const { colors } = useAppStyles();
-
-	const addProduct = () => {
-		const isProductExists = cartItems.some((product) => product.id == id);
-
-		if (!isProductExists) {
-			setCartItems((prev) => [...prev, product]);
-			return;
-		}
-
-		const updatedCart = cartItems.map((product) =>
-			product.id == id ? { ...product, count: product.count + 1 } : product,
-		);
-
-		setCartItems(updatedCart);
-	};
 
 	return (
 		<Card sx={{ width: 350, borderRadius: 3.75 }}>
@@ -110,7 +94,7 @@ export const ProductCard = (props) => {
 							{rating}
 						</Typography>
 					</Stack>
-					<Button onClick={addProduct} color="black">
+					<Button onClick={() => onAddToCard(product)} color="black">
 						Купить
 					</Button>
 				</Stack>

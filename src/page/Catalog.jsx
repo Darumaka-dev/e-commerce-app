@@ -6,6 +6,22 @@ import { useAppStyles } from '../data/ThemeStyles';
 export const Catalog = (props) => {
 	const { cartItems, setCartItems } = props;
 	const { colors } = useAppStyles();
+
+	const onAddToCard = (product) => {
+		const isProductExists = cartItems.some(({ id }) => product.id == id);
+
+		if (!isProductExists) {
+			setCartItems((prev) => [...prev, product]);
+			return;
+		}
+
+		const updatedCart = cartItems.map(({ id }) =>
+			product.id == id ? { ...product, count: product.count + 1 } : product,
+		);
+
+		setCartItems(updatedCart);
+	};
+
 	return (
 		<>
 			<Container maxWidth="lg" sx={{ p: '32px 0' }}>
@@ -28,8 +44,7 @@ export const Catalog = (props) => {
 							<ProductCard
 								key={product.id}
 								product={product}
-								cartItems={cartItems}
-								setCartItems={setCartItems}
+								onAddToCard={onAddToCard}
 							/>
 						))}
 				</Stack>
@@ -52,8 +67,7 @@ export const Catalog = (props) => {
 							<ProductCard
 								key={product.id}
 								product={product}
-								cartItems={cartItems}
-								setCartItems={setCartItems}
+								onAddToCard={onAddToCard}
 							/>
 						))}
 				</Stack>
