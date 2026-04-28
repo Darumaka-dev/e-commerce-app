@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 
 import { ThemeStyles } from './data/ThemeStyles';
-import { useAppStyles } from './data/ThemeStyles';
 
 import { Catalog } from './page/Catalog';
 import { Cart } from './page/Cart';
@@ -13,16 +11,7 @@ import { Footer } from './components/Footer';
 import { useLocalStorage } from './data/useLocalStorage';
 
 function App() {
-	// const [cartItems, setCartItems] = useState(() => {
-	// 	const data = localStorage.getItem('cart');
-	// 	return data ? JSON.parse(data) : [];
-	// });
-
-	// useEffect(() => {
-	// 	localStorage.setItem('cart', JSON.stringify(cartItems));
-	// }, [cartItems]);
-
-	const [cartItems, setCartItems] = useLocalStorage('cart', []);
+	const [cartItems, setCartItems] = useLocalStorage('cart-items', []);
 
 	return (
 		<>

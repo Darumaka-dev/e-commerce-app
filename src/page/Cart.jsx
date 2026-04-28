@@ -15,6 +15,31 @@ export const Cart = (props) => {
 	const { cartItems, setCartItems } = props;
 	const { colors } = useAppStyles();
 
+	const deleteProduct = (id) => {
+		setCartItems(cartItems.filter((product) => product.id !== id));
+	};
+
+	const addProduct = (product) => {
+		setCartItems(
+			cartItems.map(({ id }) =>
+				product.id == id ? { ...product, count: product.count + 1 } : product,
+			),
+		);
+	};
+
+	const removeProduct = (product) => {
+		if (product.count == 1) {
+			setCartItems(cartItems.filter((p) => p.id !== product.id));
+			return;
+		}
+
+		setCartItems(
+			cartItems.map(({ id }) =>
+				product.id == id ? { ...product, count: product.count - 1 } : product,
+			),
+		);
+	};
+
 	const totalPrice = cartItems.reduce(
 		(acc, currentValue) =>
 			acc + (currentValue.sale || currentValue.price) * currentValue.count,
@@ -46,8 +71,9 @@ export const Cart = (props) => {
 						<CartCard
 							key={product.id}
 							product={product}
-							cartItems={cartItems}
-							setCartItems={setCartItems}
+							onDelete={deleteProduct}
+							onAdd={addProduct}
+							onRemove={removeProduct}
 						/>
 					))}
 				</Stack>
