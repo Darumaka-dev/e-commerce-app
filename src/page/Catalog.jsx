@@ -15,11 +15,13 @@ export const Catalog = (props) => {
 			return;
 		}
 
-		const updatedCart = cartItems.map(({ id }) =>
-			product.id == id ? { ...product, count: product.count + 1 } : product,
-		);
+		const updateCart = (prev) => {
+			return prev.map((prod) =>
+				product.id == prod.id ? { ...prod, count: prod.count + 1 } : prod,
+			);
+		};
 
-		setCartItems(updatedCart);
+		setCartItems(updateCart);
 	};
 
 	return (

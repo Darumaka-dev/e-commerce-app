@@ -20,11 +20,11 @@ export const Cart = (props) => {
 	};
 
 	const addProduct = (product) => {
-		setCartItems(
-			cartItems.map(({ id }) =>
-				product.id == id ? { ...product, count: product.count + 1 } : product,
-			),
-		);
+		setCartItems((prev) => {
+			return prev.map((prod) =>
+				product.id == prod.id ? { ...prod, count: prod.count + 1 } : prod,
+			);
+		});
 	};
 
 	const removeProduct = (product) => {
@@ -33,11 +33,11 @@ export const Cart = (props) => {
 			return;
 		}
 
-		setCartItems(
-			cartItems.map(({ id }) =>
-				product.id == id ? { ...product, count: product.count - 1 } : product,
-			),
-		);
+		setCartItems((prev) => {
+			return prev.map((prod) =>
+				product.id == prod.id ? { ...prod, count: prod.count - 1 } : prod,
+			);
+		});
 	};
 
 	const totalPrice = cartItems.reduce(
