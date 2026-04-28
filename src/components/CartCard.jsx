@@ -16,8 +16,7 @@ import { useAppStyles } from '../data/ThemeStyles';
 
 export const CartCard = (props) => {
 	const {
-		product: { id, title, image, price, rating, sale },
-		product,
+		product: { id, title, image, price, sale },
 		cartItems,
 		setCartItems,
 	} = props;
