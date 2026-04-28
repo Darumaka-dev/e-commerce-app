@@ -9,16 +9,16 @@ export const products = [
 	{
 		id: '1',
 		title: 'Apple BYZ S852I',
-		price: '15$',
+		price: 1500,
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleByz,
-		sale: '10$',
+		sale: 1200,
 	},
 	{
 		id: '2',
 		title: 'Apple EarPods',
-		price: '15$',
+		price: 1500 ,
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleEarPods1,
@@ -26,7 +26,7 @@ export const products = [
 	{
 		id: '3',
 		title: 'Apple EarPods',
-		price: '15$',
+		price: 1500,
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleEarPods2,
@@ -34,7 +34,7 @@ export const products = [
 	{
 		id: '4',
 		title: 'Apple BYZ',
-		price: '15$',
+		price: 1500,
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleByz,
@@ -42,7 +42,7 @@ export const products = [
 	{
 		id: '5',
 		title: 'Apple EarPods',
-		price: '15$',
+		price: 1500,
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleEarPods1,
@@ -50,7 +50,7 @@ export const products = [
 	{
 		id: '6',
 		title: 'Apple EarPods',
-		price: '15$',
+		price: 1500,
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleEarPods2,
@@ -58,7 +58,7 @@ export const products = [
 	{
 		id: '7',
 		title: 'Apple AirPods 4',
-		price: '15$',
+		price: 1500,
 		rating: '4.7',
 		type: 'earphones',
 		image: appleAirPods,
@@ -66,7 +66,7 @@ export const products = [
 	{
 		id: '8',
 		title: 'Apple AirPods Pro',
-		price: '15$',
+		price: 1500,
 		rating: '4.7',
 		type: 'earphones',
 		image: appleAirPodsPro,
@@ -74,7 +74,7 @@ export const products = [
 	{
 		id: '9',
 		title: 'Borophone',
-		price: '15$',
+		price: 1500,
 		rating: '4.7',
 		type: 'earphones',
 		image: borophone,

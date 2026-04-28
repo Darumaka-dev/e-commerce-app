@@ -1,48 +1,100 @@
-import {
-	Container,
-	Button,
-	Box,
-	Stack,
-	Typography,
-	IconButton,
-	Card,
-} from '@mui/material';
-import { Link } from 'react-router-dom';
-
-import { Cart } from '../page/Cart';
+import { Container, Box, Stack, Typography, Card, Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import LanguageIcon from '@mui/icons-material/Language';
 
-import Divider from '@mui/material/Divider';
 export const Footer = () => {
+	const navigate = useNavigate();
+	const handleClick = () => {
+		navigate('/');
+	};
+
 	return (
 		<Container maxWidth="lg">
 			<Card>
 				<Stack
-					direction="row"
-					sx={{ justifyContent: 'space-between', p: '30px', height: '82px' }}
+					direction="row" spacing={8} useFlexGap
+					sx={{
+						justifyContent: 'space-between',
+						p: '30px',
+						flexWrap: 'wrap',
+					}}
 				>
-					<Box sx={{}}> QPICK</Box>
-					<Box sx={{}}>
-						<Typography>Избранное</Typography>
-						<Link to='/Cart'>Корзина</Link>
-						<Typography>Корзина</Typography>
+					<Box
+						variant="h6"
+						component="div"
+						sx={{ fontWeight: 600, minWidth: 150 }}
+						onClick={handleClick}
+					>
+						QPICK
 					</Box>
-					<Box sx={{}}>
-						<Typography sx={{ mb: '20px', textAlign: 'center' }}>
+					<Stack spacing={1} sx={{ minWidth: 120 }}>
+						<Link
+							sx={{
+								textDecoration: 'none',
+								color: 'black',
+								'&:hover': { textDecoration: 'underline' },
+								fontFamily: 'ui-rounded',
+							}}
+							to="#"
+						>
+							Избранное
+						</Link>
+
+						<Link
+							component={RouterLink}
+							sx={{
+								textDecoration: 'none',
+								color: 'black',
+								'&:hover': { textDecoration: 'underline' },
+								fontFamily: 'ui-rounded',
+							}}
+							to="/Cart"
+						>
+							Корзина
+						</Link>
+						<Link
+							sx={{
+								textDecoration: 'none',
+								color: 'black',
+								'&:hover': { textDecoration: 'underline' },
+								fontFamily: 'ui-rounded',
+							}}
+							to="#"
+						>
+							Контакты
+						</Link>
+					</Stack>
+					<Box sx={{ minWidth: 120 }}>
+						<Link
+							sx={{
+								display: 'block',
+								textDecoration: 'none',
+								color: 'black',
+								'&:hover': { textDecoration: 'underline' },
+								fontFamily: 'ui-rounded',
+								mb: '15px',
+								textAlign: 'center',
+							}}
+						>
 							Условия сервиса
-						</Typography>
+						</Link>
 						<Stack
 							direction="row"
 							spacing={2}
-							sx={{ justifyContent: 'space-between', height: '82px' }}
+							sx={{ justifyContent: 'space-between' }}
 						>
 							<LanguageIcon></LanguageIcon>
-							<Typography>Рус</Typography>
+							<Typography sx={{ color: '#ffa542' }}>Рус</Typography>
 							<Typography>Eng</Typography>
 						</Stack>
 					</Box>
-					<Stack direction="row" spacing={'18px'} sx={{ alignItems: 'center' }}>
+					<Stack
+						direction="row"
+						spacing={'18px'}
+						sx={{ alignItems: 'center', minWidth: 120 }}
+					>
 						<a href="https://example.com" style={{ display: 'block' }}>
 							<svg
 								width="31"

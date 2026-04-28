@@ -1,51 +1,101 @@
 import {
-	Container,
 	Button,
 	Box,
 	Stack,
 	Typography,
 	Card,
-	CardHeader,
 	CardMedia,
 	CardContent,
 	CardActions,
+	CardHeader,
+	IconButton,
 } from '@mui/material';
 
 import GradeIcon from '@mui/icons-material/Grade';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const ProductCard = (props) => {
 	const {
-		product: { title, image, price },
+		product: { title, image, price, rating, sale },
+		product,
+		setCartItems,
 	} = props;
 
+	const addProduct = () => {
+		setCartItems((prev) => [...prev, product]);
+	};
+
 	return (
-		<Card sx={{ width: 350 }}>
+		<Card sx={{ width: 350, borderRadius: 3.75 }}>
+			<CardHeader
+				action={
+					<IconButton>
+						<FavoriteIcon sx={{ color: '#838383' }} />
+					</IconButton>
+				}
+				sx={{ flexDirection: 'row-reverse' }}
+			></CardHeader>
 			<CardMedia
 				component="img"
 				src={image}
 				alt={title}
-				sx={{ objectFit: 'contain', height: 200 }}
+				sx={{
+					objectFit: 'contain',
+					height: 220,
+					marginBottom: 6,
+					marginTop: 2,
+				}}
 			/>
 
 			<CardContent>
-				<Stack>
-					<Stack
-						sx={{
-							justifyContent: 'space-between',
-						}}
-						direction="row"
-					>
-						<Typography variant="body2">{title}</Typography>
-						<Typography variant="body2" sx={{ color: 'text.secondary' }}>
-							{price}
+				<Stack
+					direction="row"
+					sx={{
+						justifyContent: 'space-between',
+						height: '45px',
+					}}
+				>
+					<Typography variant="subtitle1">{title}</Typography>
+					<Box>
+						<Typography sx={{ color: '#ffa542' }}>
+							{sale ? sale : price} ₽
 						</Typography>
-					</Stack>
+						<Typography
+							variant="caption"
+							sx={{ textDecoration: 'line-through', color: '#FFCE7F' }}
+						>
+							{sale && `${price} ₽`}
+						</Typography>
+					</Box>
 				</Stack>
 			</CardContent>
 
-			<CardActions disableSpacing>
-				<GradeIcon sx={{ marginRight: 'auto' }}/>
-				<Button>Купить</Button>
+			<CardActions>
+				<Stack
+					direction="row"
+					sx={{
+						alignItems: 'center',
+						justifyContent: 'space-between',
+						mb: 3.5,
+						width: '100%',
+					}}
+				>
+					<Stack
+						direction="row"
+						spacing={1.25}
+						sx={{
+							alignItems: 'center',
+						}}
+					>
+						<GradeIcon sx={{ color: '#ffa542' }} />
+						<Typography variant="subtitle2" sx={{ color: '#838383' }}>
+							{rating}
+						</Typography>
+					</Stack>
+					<Button onClick={addProduct} color="black">
+						Купить
+					</Button>
+				</Stack>
 			</CardActions>
 		</Card>
 	);
