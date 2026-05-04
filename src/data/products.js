@@ -14,14 +14,16 @@ export const products = [
 		type: 'headPhones',
 		image: appleByz,
 		sale: 1200,
+		count: 1,
 	},
 	{
 		id: '2',
 		title: 'Apple EarPods',
-		price: 1500 ,
+		price: 1500,
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleEarPods1,
+		count: 1,
 	},
 	{
 		id: '3',
@@ -30,6 +32,7 @@ export const products = [
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleEarPods2,
+		count: 1,
 	},
 	{
 		id: '4',
@@ -38,6 +41,7 @@ export const products = [
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleByz,
+		count: 1,
 	},
 	{
 		id: '5',
@@ -46,6 +50,7 @@ export const products = [
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleEarPods1,
+		count: 1,
 	},
 	{
 		id: '6',
@@ -54,6 +59,7 @@ export const products = [
 		rating: '4.7',
 		type: 'headPhones',
 		image: appleEarPods2,
+		count: 1,
 	},
 	{
 		id: '7',
@@ -62,6 +68,7 @@ export const products = [
 		rating: '4.7',
 		type: 'earphones',
 		image: appleAirPods,
+		count: 1,
 	},
 	{
 		id: '8',
@@ -70,6 +77,7 @@ export const products = [
 		rating: '4.7',
 		type: 'earphones',
 		image: appleAirPodsPro,
+		count: 1,
 	},
 	{
 		id: '9',
@@ -78,5 +86,6 @@ export const products = [
 		rating: '4.7',
 		type: 'earphones',
 		image: borophone,
+		count: 1,
 	},
 ];

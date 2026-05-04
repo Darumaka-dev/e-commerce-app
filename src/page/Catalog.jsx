@@ -1,49 +1,76 @@
 import { products } from '../data/products.js';
 import { ProductCard } from '../components/ProductCard.jsx';
 import { Stack, Container, Typography } from '@mui/material';
+import { useAppStyles } from '../data/ThemeStyles';
 
 export const Catalog = (props) => {
+	const { cartItems, setCartItems } = props;
+	const { colors } = useAppStyles();
 
-	const {cartItems, setCartItems} = props;
+	const onAddToCard = (product) => {
+		const isProductExists = cartItems.some(({ id }) => product.id == id);
+
+		if (!isProductExists) {
+			setCartItems((prev) => [...prev, product]);
+			return;
+		}
+
+		const updateCart = (prev) => {
+			return prev.map((prod) =>
+				product.id == prod.id ? { ...prod, count: prod.count + 1 } : prod,
+			);
+		};
+
+		setCartItems(updateCart);
+	};
+
 	return (
 		<>
-			<Container maxWidth="lg">
-				<Typography variant="h6" sx={{ mb: 2.5, color: '#838383' }}>
+			<Container maxWidth="lg" sx={{ p: '32px 0' }}>
+				<Typography variant="h6" sx={{ color: colors.textPrimary }}>
 					Наушники
 				</Typography>
 				<Stack
 					direction="row"
 					useFlexGap
+					spacing={4}
 					sx={{
 						flexWrap: 'wrap',
 						justifyContent: 'center',
-						gap: '30px 45px',
-						mb: 3.75,
+						p: '32px 0',
 					}}
 				>
 					{products
 						.filter((product) => product.type == 'headPhones')
 						.map((product) => (
-							<ProductCard key={product.id} product={product} cartItems={cartItems} setCartItems={setCartItems}/>
+							<ProductCard
+								key={product.id}
+								product={product}
+								onAddToCard={onAddToCard}
+							/>
 						))}
 				</Stack>
-				<Typography variant="h6" sx={{ mb: 2.5, color: '#838383' }}>
+				<Typography variant="h6" sx={{ color: colors.textPrimary }}>
 					Беспроводные наушники
 				</Typography>
 				<Stack
 					direction="row"
 					useFlexGap
+					spacing={4}
 					sx={{
 						flexWrap: 'wrap',
 						justifyContent: 'center',
-						gap: '30px 45px',
-						mb: 3.75,
+						p: '32px 0',
 					}}
 				>
 					{products
 						.filter((product) => product.type == 'earphones')
 						.map((product) => (
-							<ProductCard key={product.id} product={product} cartItems={cartItems} setCartItems={setCartItems}/>
+							<ProductCard
+								key={product.id}
+								product={product}
+								onAddToCard={onAddToCard}
+							/>
 						))}
 				</Stack>
 			</Container>
