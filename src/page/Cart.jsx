@@ -65,21 +65,33 @@ export const Cart = (props) => {
 				<Stack
 					direction="column"
 					spacing={4}
-					sx={{ minWidth: 330, flexGrow: 2 }}
+					sx={{ minWidth: 330, flexGrow: 3, flexBasis: 0 }}
 				>
-					{cartItems.map((product) => (
-						<CartCard
-							key={product.id}
-							product={product}
-							onDelete={deleteProduct}
-							onAdd={addProduct}
-							onRemove={removeProduct}
-						/>
-					))}
+					{cartItems.length == 0 ? (
+						<Typography variant="body" sx={{ color: colors.textPrimary }}>
+							Корзина пуста
+						</Typography>
+					) : (
+						cartItems.map((product) => (
+							<CartCard
+								key={product.id}
+								product={product}
+								onDelete={deleteProduct}
+								onAdd={addProduct}
+								onRemove={removeProduct}
+							/>
+						))
+					)}
 				</Stack>
 
 				<Card
-					sx={{ minWidth: 330, flexGrow: 1, borderRadius: 2.5, height: '100%' }}
+					sx={{
+						minWidth: 330,
+						flexGrow: 2,
+						borderRadius: 2.5,
+						height: '100%',
+						flexBasis: 0,
+					}}
 				>
 					<CardContent>
 						<Stack
