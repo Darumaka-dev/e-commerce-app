@@ -27,65 +27,74 @@ export const Footer = () => {
 						flexWrap: 'wrap',
 					}}
 				>
-					<Box
+					<Typography
 						variant="h6"
 						component="div"
 						sx={{ fontWeight: fonts.medium, minWidth: 150 }}
 						onClick={handleClick}
 					>
 						QPICK
-					</Box>
+					</Typography>
 					<Stack spacing={1} sx={{ minWidth: 120 }}>
-						<Link
-							sx={{
-								textDecoration: 'none',
-								color: 'black',
-								'&:hover': { textDecoration: 'underline' },
-								fontFamily: 'ui-rounded',
-							}}
-							to="#"
-						>
-							Избранное
-						</Link>
+						<Typography>
+							<Link
+								sx={{
+									textDecoration: 'none',
+									color: 'black',
+									'&:hover': { textDecoration: 'underline' },
+									fontFamily: 'ui-rounded',
+								}}
+								to="#"
+							>
+								Избранное
+							</Link>
+						</Typography>
 
-						<Link
-							component={RouterLink}
-							sx={{
-								textDecoration: 'none',
-								color: 'black',
-								'&:hover': { textDecoration: 'underline' },
-								fontFamily: 'ui-rounded',
-							}}
-							to="/Cart"
-						>
-							Корзина
-						</Link>
-						<Link
-							sx={{
-								textDecoration: 'none',
-								color: 'black',
-								'&:hover': { textDecoration: 'underline' },
-								fontFamily: 'ui-rounded',
-							}}
-							to="#"
-						>
-							Контакты
-						</Link>
+						<Typography>
+							<Link
+								component={RouterLink}
+								sx={{
+									textDecoration: 'none',
+									color: 'black',
+									'&:hover': { textDecoration: 'underline' },
+									fontFamily: 'ui-rounded',
+								}}
+								to="/Cart"
+							>
+								Корзина
+							</Link>
+						</Typography>
+						<Typography>
+							<Link
+								sx={{
+									textDecoration: 'none',
+									color: 'black',
+									'&:hover': { textDecoration: 'underline' },
+									fontFamily: 'ui-rounded',
+								}}
+								to="#"
+							>
+								Контакты
+							</Link>
+						</Typography>
 					</Stack>
 					<Box sx={{ minWidth: 120 }}>
-						<Link
-							sx={{
-								display: 'block',
-								textDecoration: 'none',
-								color: 'black',
-								'&:hover': { textDecoration: 'underline' },
-								fontFamily: 'ui-rounded',
-								mb: '15px',
-								textAlign: 'center',
-							}}
-						>
-							Условия сервиса
-						</Link>
+						<Typography>
+							<Link
+								sx={{
+									display: 'block',
+									textDecoration: 'none',
+									color: 'black',
+									'&:hover': { textDecoration: 'underline' },
+									fontFamily: 'ui-rounded',
+									mb: '15px',
+									textAlign: 'center',
+								}}
+							>
+								Условия сервиса
+							</Link>
+						</Typography>
+
 						<Stack
 							direction="row"
 							spacing={2}

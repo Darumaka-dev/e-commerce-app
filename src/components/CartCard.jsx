@@ -28,7 +28,7 @@ export const CartCard = (props) => {
 	const sumProduct = (sale || price) * count;
 
 	return (
-		<Card sx={{ maxWidth: 633, p: '10px 20px', borderRadius: 3.75 }}>
+		<Card sx={{ p: '10px 20px', borderRadius: 3.75 }}>
 			<CardHeader
 				action={
 					<IconButton color="error" onClick={() => onDelete(id)}>
